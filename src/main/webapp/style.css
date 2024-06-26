@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.signup_content input, .login_content input {
+	width: 40vh;
+	height: 4vh;
+	border: none;	
+	border-radius: 10px;
+	padding: 10px;
+	
+}
+input:focus-visible{
+	outline: none;
+}
+
+/* index.html */
+
+
+.idx .btn {
+	display: flex;
+	justify-content: space-around;
+	gap: 20px;
+}
+
+.idx .btn button {
+	padding: 10px 20px;
+	border: none;
+	background-color: transparent;
+	color: white;
+	font-size: 15px;
+	font-weight: bolder;
+	cursor: pointer;
+	transition: all 0.3s linear;
+}
+
+.idx .btn button:hover {
+	border-bottom: 1px solid;
+	font-size: 16px;
+}
+
+/* cust-login */
+
+
+.login-page, .signup-page {
+	width: 40%;
+	margin: auto;
+	height: 100vh;
+	background: lightseagreen;
+	display: grid;
+	justify-content: space-around;
+	align-items: center;
+	border-radius: 20px;
+	box-shadow: 0 0 10px grey, 0 0 10px lightgrey;
+}
+.login-page a, .signup-page a{
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  border-bottom: 2px solid lightgrey; 
+}
+.login-page h2, .signup-page h3 {
+	padding-bottom:10px; 
+}
+
+.login_container {
+	height: 80vh;
+	margin: 10px auto;
+	padding: 20px;
+	color: darkslateblue;
+}
+
+.signup_container {
+	height: 90vh;
+	margin: 10px auto;
+	padding: 20px;
+	color: darkslateblue;
+}
+
+.login_content button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 10px;
+	background: lightblue;
+	color: darkslateblue;
+	font-size: 15px;
+	font-weight: bolder;
+	cursor: pointer;
+	transition: all 0.3s forward;
+}
+.login_content button:hover{
+	background: skyblue;
+}
+
+.loginpage input {
+	border: none;
+}
+
+/* Hotel Dashboard */
+.message {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: seagreen;
+  height: 15vh;
+}
+.hotel_dashboard .message h1{
+	color: white;
+}
+
+.message button{
+	border: none;
+	border-radius: 10px;
+	padding:10px 20px;
+	background: lightcoral;
+	transition: all 0.2s linear;
+	cursor: pointer;
+	color: white;
+	font-size: 17px;
+	font-weight: bold;
+}
+.message button:hover{
+	background: lightsalmon;
+}
+
+.hotel_dashboard .btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10vh;
+}
+.hotel_dashboard .btn button{
+	border: none;
+	border-radius: 10px;
+	padding: 10px 20px;
+	color: white;
+	background: darkslateblue;
+	font-weight: bold;
+	cursor: pointer;	
+}

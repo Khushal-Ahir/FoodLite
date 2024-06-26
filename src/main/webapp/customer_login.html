@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body style="background: linen">
+	<main class="login-page">
+		<div style="display: flex; justify-content: flex-end; align-items: center; width: 100%; color: white;">
+			<a href="index.html">Home</a>
+		</div>
+		<form action="cust_login" method="post" class="loginpage">
+			<div class="login_container" style="display: grid; align-items: center; justify-content: space-around;">
+				<h1>User Login</h1>
+				<div class="login_content">
+					<h2>Email :</h2>
+					<input name="email" type="email" />
+				</div>
+				<div class="login_content">
+					<h2>Password :</h2>
+					<input name="password" type="password" />
+				</div>
+				<div class="btn"
+					style="display: flex; justify-content: space-between; align-items: center;">
+					<div class="login_content">
+						<button type="submit">Submit</button>
+					</div>
+					<div class="login_content">
+						<button type="reset">Reset</button>
+					</div>
+				</div>
+				<div class="login_content">
+				<br>
+					<a href="cust_signup">Don't Have Customer Account ?</a><br><br>
+					<a href="hotel_login">Go Hotel Account</a>
+				</div>
+			</div>
+		</form>
+	</main>
+</body>
+</html>

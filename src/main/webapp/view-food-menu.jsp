@@ -1,3 +1,5 @@
+<%@page import="database.CartItem"%>
+<%@page import="database.Customer"%>
 <%@page import="org.apache.commons.codec.binary.Base64"%>
 <%@page import="database.FoodItem"%>
 <%@page import="java.util.List"%>
@@ -60,6 +62,8 @@ img {
 <body style="background: lavender">
 	<%
 	List<FoodItem> list = (List<FoodItem>) request.getAttribute("list");
+	Customer customer = (Customer) session.getAttribute("customer");
+	List<CartItem> cartItems = customer.getCart().getCartItems();
 	%>
 	<section>
 		<div class="view_items">
@@ -68,7 +72,9 @@ img {
 				<a href="hotel_dashboard.html">Home</a>
 			</div>
 			<div class="view-fooditems">
-				<% for (FoodItem item : list) { %>
+				<%
+				for (FoodItem item : list) {
+				%>
 				<div class="fodditem-list">
 					<div class="image">
 						<img alt="<%=item.getName()%>"
@@ -89,14 +95,28 @@ img {
 							<h3></h3>
 						</div>
 						<div class="btn">
-							<button> - </button>
-							<p>0</p>
-							<button> + </button>
+							<a href="delete-from-cart?id=<%= item.getId()%>"><button>-</button></a>
+							<p>
+								<%
+								boolean flag = true;
+								for (CartItem cartItem : cartItems) {
+									if (cartItem.getName().equals(item.getName())) {
+								%><%=cartItem.getQuantity()%>
+								<%
+								flag = false;
+								break;
+								}
+								}
+								if (flag) { %>0 <% } %>
+							</p>
+							<a href="add-to-cart?id=<%=item.getId()%>"><button>+</button></a>
 							<a href=""><button>Add To Cart</button></a>
 						</div>
 					</div>
 				</div>
-				<% } %>
+				<%
+				}
+				%>
 			</div>
 		</div>
 		<div class="btn">

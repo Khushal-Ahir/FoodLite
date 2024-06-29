@@ -7,6 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import database.Cart;
+import database.CartItem;
 import database.Customer;
 import database.FoodItem;
 import database.Hotel;
@@ -42,13 +44,11 @@ public class FoodLitedao {
 //	GET OR FETCH OPRATION
 	
 	public List<Customer> custByEmail(String email) {
-		return manager.createQuery("select mail from Customer mail where email = ?1").setParameter(1, email)
-				.getResultList();
+		return manager.createQuery("select mail from Customer mail where email = ?1").setParameter(1, email).getResultList();
 	}
 
 	public List<Hotel> hotelByEmail(String email) {
-		return manager.createQuery("select mail from Hotel mail where email = ?1").setParameter(1, email)
-				.getResultList();
+		return manager.createQuery("select mail from Hotel mail where email = ?1").setParameter(1, email).getResultList();
 	}
 
 	public List<FoodItem> fetchFoodByHotel(int id){
@@ -67,6 +67,10 @@ public class FoodLitedao {
 		return manager.find(FoodItem.class, id);
 	}
 	
+	public CartItem fetchCartItemById(int id) {
+		return manager.find(CartItem.class, id);
+	}
+	
 //	DELETE OPRATION
 	
 	public void deleteFoodItem(FoodItem foodItem) {
@@ -75,11 +79,35 @@ public class FoodLitedao {
 		transaction.commit();
 	}
 
+	public void deleteCartItem(CartItem cartItem) {
+		transaction.begin();
+		manager.remove(cartItem);
+		transaction.commit();		
+	}
+
 //	UPDATE OPRATION
 	
 	public void updateFoodItem(FoodItem foodItem) {
 		transaction.begin();
 		manager.merge(foodItem);
+		transaction.commit();
+	}
+	
+	public void updateCustomer (Customer customer) {
+		transaction.begin();
+		manager.merge(customer);
+		transaction.commit();
+	}
+
+	public void updateCartItem(CartItem cartitem) {
+		transaction.begin();
+		manager.merge(cartitem);
+		transaction.commit();
+	}
+
+	public void updateCart(Cart cart) {
+		transaction.begin();
+		manager.merge(cart);
 		transaction.commit();
 	}
 }

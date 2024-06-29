@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.FoodLitedao;
+import database.Cart;
 import database.Customer;
 
 @WebServlet("/cust_signup")
@@ -28,7 +29,7 @@ public class CSignUp extends HttpServlet {
 		String cnf_pass = req.getParameter("cnf_password");
 		String address = req.getParameter("address");
 		
-		Customer customer = new Customer(un, email, pass, cnf_pass, address);
+		Customer customer = new Customer(un, email, pass, cnf_pass, address, new Cart());
 		
 		FoodLitedao fld = new FoodLitedao();
 		

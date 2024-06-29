@@ -1,7 +1,6 @@
 package foodlite;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,31 +8,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.FoodLitedao;
+import database.Cart;
 import database.Customer;
-import database.Hotel;
 
-@WebServlet("/view-hotel")
-public class ViewAllHotel extends HttpServlet {
+@WebServlet("/view-cart")
+public class ViewCart extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		Customer customer = (Customer) req.getSession().getAttribute("customer");
-
-		if (customer == null) {
+		
+		if(customer == null) {
 			resp.getWriter().print("<h1> Invalid Session </h1>");
 			req.getRequestDispatcher("cust_login").include(req, resp);
-		} else {
-
-			FoodLitedao fld = new FoodLitedao();
-			List<Hotel> hotels = fld.fetchHotel();
-
-			if (hotels.isEmpty()) {
-				resp.getWriter().print("<h1> No item Now </h1>");
-				req.getRequestDispatcher("cust-home").forward(req, resp);
-			} else {
-				req.setAttribute("hotels", hotels);
-				req.getRequestDispatcher("view-hotel.jsp").include(req, resp);
+		}
+		else {
+			Cart cart=customer.getCart();
+			if(cart.getCartItems().isEmpty()) {
+				System.out.println("enter if first");
+				resp.getWriter().print("<h1> Cart is Empty </h1>");
+				req.getRequestDispatcher("view-food-menu").include(req, resp);
+				System.out.println("enter if sec");
+			}
+			else {
+				req.setAttribute("cart", customer.getCart());
+				req.getRequestDispatcher("view-cart.jsp").forward(req, resp);
 			}
 		}
 	}

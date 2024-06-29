@@ -4,15 +4,18 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import dao.FoodLitedao;
 import database.Hotel;
 
 @WebServlet("/hotel_signup")
+@MultipartConfig
 public class HSignUp extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,7 +30,11 @@ public class HSignUp extends HttpServlet {
 		String hotel_name= req.getParameter("hotel_name");
 		String address = req.getParameter("address");
 		
-		Hotel hotel = new Hotel(un, email, pass, hotel_name, address);
+		Part part = req.getPart("image");
+		byte[] image = new byte[part.getInputStream().available()];
+		part.getInputStream().read(image);
+		
+		Hotel hotel = new Hotel(un, email, pass, hotel_name, address, image);
 		FoodLitedao fld = new FoodLitedao();
 
 		List<Hotel> list = fld.hotelByEmail(email);

@@ -10,9 +10,9 @@
 		<div style="display: flex; justify-content: flex-end; align-items: center; width: 100%">
 			<a href="index.html">Home</a>
 		</div>
-		<form action="hotel_signup" method="post" class="signuppage">
+		<form action="hotel_signup" method="post" class="signuppage" enctype="multipart/form-data">
 			<div class="signup_container"
-				style="display: grid; align-items: center; justify-content: space-around;">
+				style="display: grid; align-items: center; justify-content: space-around; padding: 10px 0;">
 				<h1>Hotel Sign Up</h1>
 				<div class="signup_content">
 					<h3>Name</h3>
@@ -21,7 +21,11 @@
 				<div class="signup_content">
 					<h3>Hotel Name</h3>
 					<input name="hotel_name" type="text" />
-				</div>				
+				</div>
+				<div class="signup_content" style="padding: 5px 0;">
+					<h3>Hotel Image</h3>
+					<input type="file" name="image" />
+				</div>			
 				<div class="signup_content">
 					<h3>Email</h3>
 					<input name="email" type="email" />

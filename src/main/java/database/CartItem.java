@@ -8,31 +8,30 @@ import javax.persistence.Lob;
 
 import lombok.Data;
 
-@Entity
 @Data
-public class Hotel {
+@Entity
+public class CartItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	private String name;
-	private String hotel_name;
-	private String email;
-	private String password;
-	private String address;
-	
+	private double price;
+	private int quantity;
+	private String type;
 	@Lob
 	private byte[] image;
 
-	public Hotel(String name, String email, String password, String hotel_name, String address, byte[] image) {
+	public CartItem(String name, double price, int quantity, String type, byte[] image) {
+		super();
 		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.hotel_name = hotel_name;
-		this.address = address;
+		this.price = price;
+		this.quantity = quantity;
+		this.type = type;
 		this.image = image;
 	}
 
-	public Hotel() {
+	public CartItem() {
 		super();
 	}
+
 }

@@ -36,7 +36,7 @@ img {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	max-width: 300px;
+	width: 300px;
 	height: 200px;
 }
 

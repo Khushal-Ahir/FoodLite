@@ -17,24 +17,15 @@ import database.Hotel;
 public class ViewAllHotel extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		FoodLitedao fld = new FoodLitedao();
+		List<Hotel> hotels = fld.fetchHotel();
 
-		Customer customer = (Customer) req.getSession().getAttribute("customer");
-
-		if (customer == null) {
-			resp.getWriter().print("<h1> Invalid Session </h1>");
-			req.getRequestDispatcher("cust_login").include(req, resp);
+		if (hotels.isEmpty()) {
+			resp.getWriter().print("<h1> No item Now </h1>");
+			req.getRequestDispatcher("cust-home").forward(req, resp);
 		} else {
-
-			FoodLitedao fld = new FoodLitedao();
-			List<Hotel> hotels = fld.fetchHotel();
-
-			if (hotels.isEmpty()) {
-				resp.getWriter().print("<h1> No item Now </h1>");
-				req.getRequestDispatcher("cust-home").forward(req, resp);
-			} else {
-				req.setAttribute("hotels", hotels);
-				req.getRequestDispatcher("view-hotel.jsp").include(req, resp);
-			}
+			req.setAttribute("hotels", hotels);
+			req.getRequestDispatcher("view-hotel.jsp").include(req, resp);
 		}
 	}
 }

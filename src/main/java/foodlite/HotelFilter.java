@@ -12,18 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 
 import database.Hotel;
 
-@WebFilter({})
-public class HotelFilter implements Filter{
+@WebFilter({ "/add-item", "/delete-fooditem", "/edit-food-item", "/view-food-item" })
+public class HotelFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		Hotel hotel = (Hotel) req.getSession().getAttribute("hotel");
-		
-		if(hotel == null) {
+
+		if (hotel == null) {
 			response.getWriter().print("<h1>Invalid Session </h1>");
 			req.getRequestDispatcher("hotel_login").include(req, response);
-		}else {
+		} else {
 			chain.doFilter(request, response);
 		}
 	}
